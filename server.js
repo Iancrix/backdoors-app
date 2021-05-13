@@ -24,7 +24,7 @@ const io = require("socket.io")(server, {
   },
 });
 
-// Import Routes
+// Import Routes!
 let numberOfRequests = 0;
 let bots = [];
 
