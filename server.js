@@ -64,6 +64,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
 
+app.get("/reset", (req, res) => {
+  numberOfRequests = 0;
+  bots = [];
+  //console.log("reset");
+  res.status(200).json({ msg: "success" });
+});
+
 const CHECK_STATUS_EVENT = "checkStatusEvent";
 io.on("connection", (socket) => {
   setInterval(() => {

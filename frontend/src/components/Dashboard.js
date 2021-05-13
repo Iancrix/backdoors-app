@@ -3,10 +3,19 @@ import React from "react";
 import useStatusChecker from "./useStatusChecker";
 import { useEffect, useRef, useState } from "react";
 
-import { Heading, Box, Table, ToastMessage } from "rimble-ui";
+import { Heading, Box, Table, ToastMessage, Button } from "rimble-ui";
+
+import axios from "axios";
 
 const Dashboard = (props) => {
   const { nRequest, bots } = useStatusChecker();
+
+  const onReset = (e) => {
+    axios
+      .get("http://20.97.31.29:5000/reset")
+      .then((res) => {})
+      .catch((e) => console.log(e));
+  };
 
   return (
     <Box
@@ -24,7 +33,12 @@ const Dashboard = (props) => {
         >
           Dashboard
         </Heading>
-        <ToastMessage message={`Number of requests: ${nRequest}`} my={3} />
+        <ToastMessage message={`Number of requests: ${nRequest}`} mt={3} />
+        <Box display="flex" justifyContent="center">
+          <Button my={25} width={150} onClick={onReset}>
+            Reset
+          </Button>
+        </Box>
         <Table>
           <thead>
             <tr>
