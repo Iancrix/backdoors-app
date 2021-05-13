@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
 const CHECK_STATUS_EVENT = "checkStatusEvent";
-const SOCKET_SERVER_URL = "http://20.97.31.29:5000";
+const SOCKET_SERVER_URL = "http://localhost:5000";
 
 const useStatusChecker = () => {
   const [nRequest, setNRequest] = useState(0);

