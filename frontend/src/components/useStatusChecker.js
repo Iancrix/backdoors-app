@@ -19,7 +19,7 @@ const useStatusChecker = () => {
       setNRequest(status.nRequest);
       setBots(status.bots);
 
-      console.log("Status: ", status);
+      //console.log("Status: ", status);
     });
 
     // Destroys the socket reference
