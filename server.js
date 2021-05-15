@@ -78,7 +78,7 @@ io.on("connection", (socket) => {
       nRequest: numberOfRequests,
       bots,
     });
-  }, 1000);
+  }, 50);
 });
 
 // Serve static assets if in production
